@@ -1,17 +1,28 @@
-## Foundry
+# Stable coin
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Project overview
 
-Foundry consists of:
+**DUSD** (Duz usd) is a stablecoin created for educative purposes.
+Ans is meant to be a stablecoin where users can deposit WETH and WBTC in exchange for a token that will be pegged to the USD.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+DUSD consists of:
 
-## Documentation
+- **Relative Stability**: Anchored or Pegged to dollar.
+  1. Using Chainlink price feed.
+  2. Exchanging ETH & BTC for $USD.
+- **Stability Mechanism (Minting)**: Algorithmic (Descentralized)
+  1. People can only mint the stable coin with enough collateral (coded)
+- **Collateral**: Exogenous (Crypto)
+  1. wETH
+  2. wBTC
 
-https://book.getfoundry.sh/
+## Liquidation and collateral
+
+There is a threshold of 200%
+When a person gives 100$ of ETH as collateral, 50$ DUSD are minted to that person.
+Let's suppouse that the ETH value tanks to 74$, that person becomes undercollateralized.
+
+Another user can payback that 50$ DUSD, and in return the new user gets the 74$ ETH collateral from the formerlly person. Making 24$ by liquidating the first user.
 
 ## Usage
 
@@ -25,42 +36,4 @@ $ forge build
 
 ```shell
 $ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
 ```
